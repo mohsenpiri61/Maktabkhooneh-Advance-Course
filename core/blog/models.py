@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 # getting user model object
 # account_user = get_user_model()
 ''' if use account_user = get_user_model() must put "account_user" instead of "accounts.Profile"  '''
-
+# kkjkj
 
 class Post(models.Model):
     """
