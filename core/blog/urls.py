@@ -3,7 +3,6 @@ from django.views.generic import TemplateView
 from . import views
 from django.views.generic.base import RedirectView
 
-
 app_name = "blog_app"
 urlpatterns = [
     path('home', TemplateView.as_view(template_name="home.html", extra_context={"name": "test is ok"})),
@@ -13,7 +12,7 @@ urlpatterns = [
     path('home/<int:pk>/', views.PageView.as_view()),
     path("post/", views.PostListView.as_view(), name="post-list"),
     path("post/<int:pk>/", views.PostDetailView.as_view(), name="post-detail"),
-    #path("post/create/", views.PostCreateFormView.as_view(), name="post-create"),
+    # path("post/create/", views.PostCreateFormView.as_view(), name="post-create"),
     path("post/create/", views.PostCreateView.as_view(), name="post-create"),
     path("post/<int:pk>/edit/", views.PostEditView.as_view(), name="post-edit"),
     path("post/<int:pk>/delete/", views.PostDeleteView.as_view(), name="post-delete"),
