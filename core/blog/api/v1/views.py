@@ -164,17 +164,27 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 
 """ Example for ModelViewSet in CBV """
 from rest_framework import viewsets
+from .permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+from .paginations import DefaultPagination
 
 
 class PostModelViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    # filterset_fields = ['category', 'author']
+    filterset_fields = {'category': ["exact", "in"], 'author': ["exact", "in"], 'status': ["exact"]}
+    search_fields = ["title", "content"]
+    ordering_fields = ["published_date"]
+    pagination_class = DefaultPagination
 
     """ Extra action appears in url: http://127.0.0.1:8000/blog/api/v1/post/get_via_action/ """
-    @action(detail=False, methods=['get'])
-    def get_via_action(self, request):
-        return Response({'detail': 'action is applied'})
+    # @action(detail=False, methods=['get'])
+    # def get_via_action(self, request):
+    #     return Response({'detail': 'action is applied'})
 
 
 class CategoryModelViewSet(viewsets.ModelViewSet):

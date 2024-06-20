@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from ...models import Post, Category
-from core.accounts.models import Profile
+from accounts.models import Profile
 
 
 # class PostSerializer(serializers.Serializer):
@@ -38,7 +38,7 @@ class PostSerializer(serializers.ModelSerializer):
             rep.pop("absolute_url", None)
         else:
             rep.pop("content", None)
-            
+
         rep["category"] = CategorySerializer(instance.category, context={"request": obtain_request}).data
         return rep
 
