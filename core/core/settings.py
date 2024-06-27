@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -132,8 +133,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # user manager config
 AUTH_USER_MODEL = "accounts.User"
 
+# rest framework general setting
 # REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ]
-# }
+#       'DEFAULT_PERMISSION_CLASSES': 'rest_framework.permissions.IsAuthenticated',
+#       'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination', 'PAGE_SIZE': 10
+#  }
