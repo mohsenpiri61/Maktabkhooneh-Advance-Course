@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (
-    RegistrationSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer,
-        ChangePasswordSerializer)
+        RegistrationSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer,
+        ChangePasswordSerializer, ProfileSerializer)
 
 
 
@@ -87,3 +87,30 @@ class ChangePasswordApiView(generics.GenericAPIView):
             return Response({"details": "password changed successfully"}, status=status.HTTP_200_OK)
             
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+#profile 
+from ...models import Profile  
+from django.shortcuts import get_object_or_404
+  
+class ProfileApiView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, user=self.request.user)
+        return obj    
+    
+    
+from django.core.mail import send_mail
+class TestEmailSend(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        send_mail(
+            "Subject here",
+            "Here is the message.",
+            "mopiry@gmail.com",
+            ["mopiry@hotmail.com"],
+            fail_silently=False,
+        )    
+        return Response('email sent')
