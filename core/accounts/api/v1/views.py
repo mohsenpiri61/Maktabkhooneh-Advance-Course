@@ -23,7 +23,6 @@ class RegistrationApiView(generics.GenericAPIView):
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 
-
 class CustomAuthToken(ObtainAuthToken):
     serializer_class = CustomAuthTokenSerializer
     def post(self, request, *args, **kwargs):
@@ -60,7 +59,8 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 # changing Password    
 from django.contrib.auth import get_user_model 
-User = get_user_model()   
+User = get_user_model() 
+  
 class ChangePasswordApiView(generics.GenericAPIView):
     model = User
     permission_classes = [IsAuthenticated]
@@ -102,15 +102,24 @@ class ProfileApiView(generics.RetrieveUpdateAPIView):
         obj = get_object_or_404(queryset, user=self.request.user)
         return obj    
     
-    
-from django.core.mail import send_mail
+
+# email with threading and toker creation  
+from mail_templated import EmailMessage
+from ..utils import EmailThread
+from rest_framework_simplejwt.tokens import RefreshToken
+
 class TestEmailSend(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
-        send_mail(
-            "Subject here",
-            "Here is the message.",
-            "mopiry@gmail.com",
-            ["mopiry@hotmail.com"],
-            fail_silently=False,
-        )    
+        self.email = 'mopiry@yahoo.com'
+        user_obj = get_object_or_404(User, email=self.email)
+        token = self.get_tokens_for_user(user_obj)
+        message = EmailMessage('email/hello.tpl', {'token': token}, 'mopiry@gmail.com', to=[self.email])    
+        EmailThread(message).start()
         return Response('email sent')
+   
+   
+    def get_tokens_for_user(self, user):
+        refresh = RefreshToken.for_user(user)
+        return str(refresh.access_token)
+
+
