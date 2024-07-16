@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework_simplejwt',
     'mail_templated',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -162,5 +163,5 @@ EMAIL_HOST = "smtp4dev"
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 25
-EMAIL_USE_TLS=False
+EMAIL_USE_TLS = False
 
