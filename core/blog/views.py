@@ -84,3 +84,7 @@ class PostDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     permission_required = 'blog.delete_post'
     model = Post
     success_url = "/blog/post/"
+
+
+class PostListApiView(TemplateView):
+    template_name = "blog/post_list_api.html"
