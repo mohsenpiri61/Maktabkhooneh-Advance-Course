@@ -11,7 +11,7 @@ django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
 djoser
-flake8
+django-cors-headers
 
 # email third party modules
 django-mail-templated
