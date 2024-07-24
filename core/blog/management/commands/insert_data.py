@@ -26,9 +26,6 @@ class Command(BaseCommand):
         profile_obj.description = self.fake.paragraph(nb_sentences=5)
         profile_obj.save()
 
-        for name in category_list:
-            Category.objects.get_or_create(name=name)
-
         for _ in range(7):
             Post.objects.create(
                 author=profile_obj,
