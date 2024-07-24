@@ -9,7 +9,7 @@ class TestPostModel(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(email="test@test.com",password="a/@1234567")
         self.profile = Profile.objects.create(
-            user=self.user,
+            user = self.user,
             first_name = "test_first_name",
             last_name = "test_last_name",
             description = "test description",
@@ -18,7 +18,7 @@ class TestPostModel(TestCase):
     def test_create_post_with_valid_data(self):
         
         post_obj = Post.objects.create(
-            author = self.profile,
+            author=self.profile,
             title = "test",
             content = "description",
             status = True,

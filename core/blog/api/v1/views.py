@@ -131,31 +131,31 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 
 """ Example for ViewSet in CBV """
 # from rest_framework import viewsets
-#
-#
+
+
 # class PostViewSet(viewsets.ViewSet):
 #     permission_classes = [IsAuthenticatedOrReadOnly]
 #     serializer_class = PostSerializer
 #     queryset = Post.objects.filter(status=True)
-#
+
 #     def list(self, request):
 #         serializer = self.serializer_class(self.queryset, many=True)
 #         return Response(serializer.data)
-#
+
 #     def retrieve(self, request, pk=None):
 #         post_obj = get_object_or_404(self.queryset, pk=pk)
 #         serializer = self.serializer_class(post_obj)
 #         return Response(serializer.data)
-#
+
 #     def create(self, request):
 #         pass
-#
+
 #     def update(self, request, pk=None):
 #         pass
-#
+
 #     def partial_update(self, request, pk=None):
 #         pass
-#
+
 #     def destroy(self, request, pk=None):
 #         post_obj = get_object_or_404(self.queryset, pk=pk)
 #         post_obj.delete()
@@ -181,7 +181,7 @@ class PostModelViewSet(viewsets.ModelViewSet):
     ordering_fields = ["published_date"]
     pagination_class = DefaultPagination
 
-    """ Extra action appears in url: http://127.0.0.1:8000/blog/api/v1/post/get_via_action/ """
+""" Extra action appears in url: http://127.0.0.1:8000/blog/api/v1/post/get_via_action/ """
     # @action(detail=False, methods=['get'])
     # def get_via_action(self, request):
     #     return Response({'detail': 'action is applied'})
