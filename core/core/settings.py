@@ -174,3 +174,7 @@ EMAIL_USE_TLS = False
 #     "http://localhost:8080",
 #     "http://127.0.0.1:9000",
 # ]
+
+
+# celery configs
+CELERY_BROKER_URL = "redis://redis-1:6379/1"
