@@ -177,4 +177,4 @@ EMAIL_USE_TLS = False
 
 
 # celery configs
-CELERY_BROKER_URL = "redis://redis-1:6379/1"
+CELERY_BROKER_URL = "redis://redis:6379/1"
