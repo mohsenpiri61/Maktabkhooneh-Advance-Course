@@ -23,6 +23,6 @@ pytest
 pytest-django
 Faker
 
-# background proccess and cache
+# background process and cache
 celery
 redis
