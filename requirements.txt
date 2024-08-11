@@ -13,6 +13,9 @@ djangorestframework-simplejwt
 djoser
 django-cors-headers
 
+# deployment module
+gunicorn 
+
 # email third party modules
 django-mail-templated
 
@@ -26,3 +29,5 @@ Faker
 # background process and cache
 celery
 redis
+django-redis
+
