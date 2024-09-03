@@ -38,7 +38,7 @@ class PostListView(PermissionRequiredMixin, ListView):
 
     model = Post
     context_object_name = "obj_post"
-    paginate_by = 4
+    paginate_by = 5
     ordering = "-id"
     # def get_queryset(self):
     #     posts = Post.objects.filter(status=True)  # note that obj_post is called in html no posts

@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+
 urlpatterns = [
     path('registration/', views.RegistrationApiView.as_view(), name='registration'),
     # path('token/login/', ObtainAuthToken.as_view(), name='token-login'),
