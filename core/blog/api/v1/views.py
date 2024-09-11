@@ -60,7 +60,7 @@ try:
     serial_obj = PostSerializer(post_obj)
     return Response(serial_obj.data)
 except Post.DoesNotExist:
-        return Response({"detail": "post doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+    return Response({"detail": "post doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
 """
 
 """ Example for ApiView in Class Based View """
