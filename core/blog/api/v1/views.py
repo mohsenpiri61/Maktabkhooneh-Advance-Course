@@ -55,11 +55,11 @@ we can use 'try/except' instead of 'get_object_or_404()'
 post_obj = get_object_or_404(Post, pk=id)
 serial_obj = PostSerializer(post_obj)
 return Response(serial_obj.data)
- try:
-        post_obj = Post.objects.get(pk=id, status=True)
-        serial_obj = PostSerializer(post_obj)
-        return Response(serial_obj.data)
-    except Post.DoesNotExist:
+try:
+    post_obj = Post.objects.get(pk=id, status=True)
+    serial_obj = PostSerializer(post_obj)
+    return Response(serial_obj.data)
+except Post.DoesNotExist:
         return Response({"detail": "post doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
 """
 
