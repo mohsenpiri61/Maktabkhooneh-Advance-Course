@@ -2,8 +2,8 @@ from django.test import TestCase,Client
 from django.urls import reverse
 from datetime import datetime
 
-from accounts.models import User,Profile
-from blog.models import Post,Category
+from accounts.models import User, Profile
+from blog.models import Post, Category
 
 
 class TestBlogView(TestCase):
